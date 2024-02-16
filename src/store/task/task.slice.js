@@ -2,8 +2,8 @@ import axios from "axios";
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// const API_BASE_URL = process.env.REACT_APP_API_URL;
-
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+console.log(BASE_URL)
 const initialState = {
 	isLoading: false,
 	errors: null,
@@ -61,21 +61,19 @@ export const fetchTasksAction =
 	(onSuccess, onError) => async (dispatch, getState) => {
 		dispatch(fetchTasksStart());
 		const state = getState();
-		const token = state.app.auth.loggedUser.accessToken.accessToken;
+		// const token = state.app.auth.loggedUser.accessToken.accessToken;
 		try {
-			// const response = await axios.get(`${API_BASE_URL}/tasks`, {
-			// 	headers: {
-			// 		Authorization: `Bearer ${token}`,
-			// 	},
-			// });
+			const response = await axios.get(`${BASE_URL}/tasks`, {
+	
+			});
 			dispatch(fetchTasksSuccess(response.data));
 			if (onSuccess) {
 				onSuccess();
 			}
 		} catch (e) {
-			dispatch(fetchTasksError(e.response.data.message));
+			dispatch(fetchTasksError(e));
 			if (onError) {
-				onError(e.response.data.message);
+				onError(e);
 			}
 		}
 	};
@@ -89,29 +87,34 @@ export const createTaskAction =
 	(payload, onSuccess, onError) => async (dispatch, getState) => {
 		dispatch(createTasksStart());
 		const state = getState();
-		const token = state.app.auth.loggedUser.accessToken.accessToken;
+		console.log(payload)
+		// const token = state.app.auth.loggedUser.accessToken.accessToken;
 		try {
-			// const response = await axios.post(
-			// 	`${API_BASE_URL}/tasks`,
-			// 	{
-			// 		title: payload.taskName,
-			// 		description: payload.description,
-			// 		dueDate: payload.date,
-			// 	},
-			// 	{
-			// 		headers: {
-			// 			Authorization: `Bearer ${token}`,
-			// 		},
-			// 	}
-			// );
+			console.log( "TASK SLICE ", BASE_URL, )
+			const response = await axios.post(
+				`${BASE_URL}/tasks`,
+				{
+					taskName: payload.taskName,
+					description: payload.description,
+					dueDate: payload.date,
+				},
+
+				// {
+				// 	headers: {
+				// 		Authorization: `Bearer ${token}`,
+				// 	},
+				// }
+			);
+			console.log(response.data)
 			dispatch(createTaskSuccess(response.data));
 			if (onSuccess) {
 				onSuccess();
 			}
 		} catch (e) {
-			dispatch(fetchTasksError(e.response.data.message));
+			console.log(e, "error")
+			dispatch(fetchTasksError(e));
 			if (onError) {
-				onError(e.response.data.message);
+				onError(e);
 			}
 		}
 	};

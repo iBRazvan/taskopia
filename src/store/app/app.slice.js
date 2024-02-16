@@ -2,14 +2,16 @@ import axios from "axios";
 
 import { createSlice } from "@reduxjs/toolkit";
 
-// const API_BASE_URL = process.env.REACT_APP_API_URL;
+
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export const appSlice = createSlice({
 	name: "app",
 	initialState: {
 		ui: {
 			sidebar: {
-				isOpen: true,
+				isOpen: false,
 			},
 			modal: {
 				isOpen: false,
@@ -33,7 +35,7 @@ export const appSlice = createSlice({
 		},
 	},
 	reducers: {
-		tooggleSidebar: (state) => {
+		toggleSidebar: (state) => {
 			state.ui.sidebar.isOpen = !state.ui.sidebar.isOpen;
 		},
 		openSidebar: (state) => {
@@ -42,7 +44,7 @@ export const appSlice = createSlice({
 		closeSidebar: (state) => {
 			state.ui.sidebar.isOpen = false;
 		},
-		tooggleModal: (state) => {
+		toggleModal: (state) => {
 			state.ui.modal.isOpen = !state.ui.modal.isOpen;
 		},
 		openModal: (state, action) => {

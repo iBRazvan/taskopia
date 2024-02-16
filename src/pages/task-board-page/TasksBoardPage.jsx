@@ -12,10 +12,10 @@ import { fetchTasksAction } from "../../store/task/task.slice";
 import {TaskViewer} from "../components";
 
 function TasksBoardPage() {
-	// const dispatch = useDispatch();
-	// React.useEffect(() => {
-	// 	dispatch(fetchTasksAction());
-	// }, [dispatch]);
+	const dispatch = useDispatch();
+	React.useEffect(() => {
+		dispatch(fetchTasksAction());
+	}, [dispatch]);
 
 	return (
 		<Grid

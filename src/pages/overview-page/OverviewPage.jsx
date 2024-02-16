@@ -1,23 +1,23 @@
-// import React from "react";
+import React from "react";
 
-// import { Box } from "@mui/material";
+import { Box } from "@mui/material";
 
-// import { withNavigationDrawer } from "../../components/navigation-drawer/withNavigationDrawer";
-// import { GlobalSearchBar } from "../../components/shared";
+import withNavigationDrawer  from "../../components/navigation-drawer/withNavigationDrawer";
+import { GlobalSearchBar } from "../../components/shared";
 
-// import QuoteOfTheDay from "./components/QuoteOfTheDay";
+import QuoteOfTheDay from "./components/QuoteOfTheDay";
 
-// function OverviewPage() {
-// 	return (
-// 		<Box
-// 			sx={{
-// 				background: (t) => t.palette.background.surface,
-// 			}}
-// 		>
-// 			<GlobalSearchBar />
-// 			<QuoteOfTheDay />
-// 		</Box>
-// 	);
-// }
+function OverviewPage() {
+	return (
+		<Box
+			sx={{
+				background: (t) => t.palette.background.surface,
+			}}
+		>
+			<GlobalSearchBar />
+			<QuoteOfTheDay />
+		</Box>
+	);
+}
 
-// export default withNavigationDrawer(OverviewPage);
+export default withNavigationDrawer(OverviewPage);

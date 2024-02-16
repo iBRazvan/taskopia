@@ -74,6 +74,7 @@ export const uploadProfilePicture =
 
 			// dispatch(uploadPictureSuccess((await response).data));
 		} catch (e) {
+			console.log(e.response)
 			dispatch(registerError(e.response.data.message));
 			if (onError) {
 				onError(e.response.data.message);

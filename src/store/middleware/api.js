@@ -2,6 +2,7 @@ import axios from "axios";
 
 import * as actions from "../api";
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const api =
 	({ dispatch }) =>
 	(next) =>
@@ -14,9 +15,10 @@ const api =
 
 		next(action);
 
-		try {
+		try {console.log( "MIDDLEWARE", BASE_URL, )
 			const response = await axios.request({
-				baseURL: "https://jsonplaceholder.typicode.com",
+				
+				baseURL: BASE_URL,
 				url,
 				method,
 				data,

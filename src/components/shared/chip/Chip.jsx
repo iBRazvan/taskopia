@@ -2,9 +2,6 @@ import { Chip } from "@mui/material/";
 import { alpha, styled } from "@mui/material/styles";
 
 const StyledChip = styled(Chip, {
-	/*
-	 Make MUI aware about new prop:
-	*/
 	shouldForwardProp: (prop) => prop !== "extraColor",
 })(({ extraColor, theme }) => {
 	/*
