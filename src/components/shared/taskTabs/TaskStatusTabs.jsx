@@ -1,25 +1,48 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 
 import StyledTab from "./Tab";
+import { useSelector, useDispatch } from "react-redux";
+import { setSelectedTabStatus } from "../../../store/task/task.slice";
 
 export default function TaskStatusTabs() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const tasks = useSelector((state) => state.entities.tasks.data);
+  const [value, setValue] = useState("All tasks");
+  const [tabCounts, setTabCounts] = useState({});
+  const dispatch = useDispatch();
 
   const tabValues = [
     "All tasks",
     "Pending",
     "In progress",
+    "In review",
     "Completed",
     "Unnasigned",
   ];
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    dispatch(setSelectedTabStatus(newValue));
+  };
+
+  useEffect(() => {
+    updateTabCounts();
+  }, [tasks]);
+
+  const updateTabCounts = () => {
+    const counts = {};
+    tabValues.forEach((tabValue) => {
+      tabValue === "All tasks"
+        ? (counts[tabValue] = tasks.length)
+        : (counts[tabValue] = tasks.filter(
+            (task) => task.taskStatus === tabValue
+          ).length);
+    });
+    setTabCounts(counts);
+  };
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -36,7 +59,7 @@ export default function TaskStatusTabs() {
             key={i}
             iconPosition="end"
             label={values}
-            value={i}
+            value={values}
             wrapped
             icon={
               <Box
@@ -52,7 +75,7 @@ export default function TaskStatusTabs() {
                 <Typography
                   sx={{ fontSize: "12px", padding: "2px", fontWeight: "500" }}
                 >
-                  {i}
+                  {tabCounts[values] || 0}
                 </Typography>
               </Box>
             }

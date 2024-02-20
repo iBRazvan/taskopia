@@ -15,6 +15,7 @@ const initialState = {
 			dueDate: "20.12.2024",
 		},
 	],
+	selectedTabStatus: "All tasks"
 };
 
 const taskSlice = createSlice({
@@ -45,6 +46,9 @@ const taskSlice = createSlice({
 			state.error = null;
 			state.data.push(action.payload);
 		},
+		setSelectedTabStatus: (state, action) => {
+			state.selectedTabStatus = action.payload
+		}
 	},
 });
 export const {
@@ -55,6 +59,7 @@ export const {
 	fetchTasksSuccess,
 	createTaskSuccess,
 	createTasksStart,
+	setSelectedTabStatus
 } = taskSlice.actions;
 
 export const fetchTasksAction =
@@ -64,8 +69,9 @@ export const fetchTasksAction =
 		// const token = state.app.auth.loggedUser.accessToken.accessToken;
 		try {
 			const response = await axios.get(`${BASE_URL}/tasks`, {
-	
+				
 			});
+			console.log(response)
 			dispatch(fetchTasksSuccess(response.data));
 			if (onSuccess) {
 				onSuccess();
@@ -78,27 +84,36 @@ export const fetchTasksAction =
 		}
 	};
 
-export const fetchTasks = createAsyncThunk("posts/fetchTasks", async () => {
-	// const response = await axios.get("/fakeApi/posts");
-	return response.data;
-});
+// export const fetchTasks = createAsyncThunk("tasks", async () => {
+// 	const response = await axios.get("/fakeApi/posts");
+// 	return response.data;
+// });
+
+// export const createTaskAction = async (payload, onSuccess, onError) => {
+//     const response = await fetch("http://localhost:3001/tasks", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(payload),
+//     });
+
+//   };
 
 export const createTaskAction =
 	(payload, onSuccess, onError) => async (dispatch, getState) => {
 		dispatch(createTasksStart());
 		const state = getState();
-		console.log(payload)
+		console.log(payload, "payload")
 		// const token = state.app.auth.loggedUser.accessToken.accessToken;
 		try {
 			console.log( "TASK SLICE ", BASE_URL, )
 			const response = await axios.post(
 				`${BASE_URL}/tasks`,
-				{
+				{	
 					taskName: payload.taskName,
+					taskStatus: payload.taskStatus,
 					description: payload.description,
 					dueDate: payload.date,
 				},
-
 				// {
 				// 	headers: {
 				// 		Authorization: `Bearer ${token}`,
