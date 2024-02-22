@@ -7,20 +7,79 @@ import { NonAuthRoute } from "./utils/navigation/NonAuthRoute";
 import { ProtectedRoute } from "./utils/navigation/ProtectedRoute";
 
 import "./App.css";
-import { TasksBoardPage,OverviewPage, SettingsPage } from "./pages";
-import {Modal} from "./components/"
-
+import {
+  TasksBoardPage,
+  OverviewPage,
+  SettingsPage,
+  TaskDetailsPage,
+  LoginPage,
+  RegisterPage,
+} from "./pages";
+import { Modal } from "./components/";
 
 function App() {
   return (
     <Box>
       <Routes>
-        <Route path="/" element={<OverviewPage />} />
-        <Route path="/overview" element={<OverviewPage />} />
-        <Route path="/tasks-board" element={<TasksBoardPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
+        <Route
+          path="/login"
+          element={
+            <NonAuthRoute>
+              <LoginPage />
+            </NonAuthRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <NonAuthRoute>
+              <RegisterPage />
+            </NonAuthRoute>
+          }
+        />
+
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <OverviewPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/overview"
+          element={
+            <ProtectedRoute>
+              <OverviewPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/tasks-board"
+          element={
+            <ProtectedRoute>
+              <TasksBoardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/tasks-board/:id"
+          element={
+            <ProtectedRoute>
+              <TaskDetailsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <SettingsPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
-      <Modal/>
+      <Modal />
     </Box>
   );
 }

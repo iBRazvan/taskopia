@@ -6,7 +6,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Box, IconButton, List, Stack } from "@mui/material";
 
-import { tooggleSidebar } from "../../store/app/app.slice";
+import { toggleSidebar } from "../../store/app/app.slice";
 
 import { Drawer, DrawerHeader, drawerWidth, workspaceArea } from "./helpers";
 import NavigationListItem from "./NavigationListItem";
@@ -17,7 +17,7 @@ function NavigationDrawer() {
 	const dispatch = useDispatch();
 
 	const toggleDrawer = () => {
-		dispatch(tooggleSidebar());
+		dispatch(toggleSidebar());
 	};
 
 	const location = useLocation();

@@ -66,12 +66,12 @@ export const fetchTasksAction =
 	(onSuccess, onError) => async (dispatch, getState) => {
 		dispatch(fetchTasksStart());
 		const state = getState();
-		// const token = state.app.auth.loggedUser.accessToken.accessToken;
+		const token = state.app.auth.loggedUser.accessToken.accessToken;
 		try {
 			const response = await axios.get(`${BASE_URL}/tasks`, {
-				
+				headers: {
+					Authorization: `Bearer ${token}`},
 			});
-			console.log(response)
 			dispatch(fetchTasksSuccess(response.data));
 			if (onSuccess) {
 				onSuccess();
@@ -84,28 +84,12 @@ export const fetchTasksAction =
 		}
 	};
 
-// export const fetchTasks = createAsyncThunk("tasks", async () => {
-// 	const response = await axios.get("/fakeApi/posts");
-// 	return response.data;
-// });
-
-// export const createTaskAction = async (payload, onSuccess, onError) => {
-//     const response = await fetch("http://localhost:3001/tasks", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(payload),
-//     });
-
-//   };
-
 export const createTaskAction =
 	(payload, onSuccess, onError) => async (dispatch, getState) => {
 		dispatch(createTasksStart());
 		const state = getState();
-		console.log(payload, "payload")
-		// const token = state.app.auth.loggedUser.accessToken.accessToken;
+		const token = state.app.auth.loggedUser.accessToken.accessToken;
 		try {
-			console.log( "TASK SLICE ", BASE_URL, )
 			const response = await axios.post(
 				`${BASE_URL}/tasks`,
 				{	
@@ -114,11 +98,11 @@ export const createTaskAction =
 					description: payload.description,
 					dueDate: payload.date,
 				},
-				// {
-				// 	headers: {
-				// 		Authorization: `Bearer ${token}`,
-				// 	},
-				// }
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
 			);
 			console.log(response.data)
 			dispatch(createTaskSuccess(response.data));

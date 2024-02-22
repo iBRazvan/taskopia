@@ -7,16 +7,16 @@ import { closeModal, logOut } from "../../../../store/app/app.slice";
 import { Button, Card } from "../../../shared"
 
 function LogOutForm() {
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	const handleCloseModal = () => {
 		dispatch(closeModal());
 	};
 
-	// const onLogOutClick = () => {
-	// 	dispatch(logOut());
-	// 	handleCloseModal();
-	// };
+	const onLogOutClick = () => {
+		dispatch(logOut());
+		handleCloseModal();
+	};
 	return (
 		<Card>
 			<Typography
@@ -51,7 +51,7 @@ function LogOutForm() {
 
 				<Button
 					color="secondary"
-					// onClick={onLogOutClick}
+					onClick={onLogOutClick}
 					sx={{ textTransform: "none" }}
 					type="submit"
 					variant="outlined"

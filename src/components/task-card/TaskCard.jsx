@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 
-// import { VectorCard } from "../../assets/icons";
+import { VectorCard } from "../../assets/icons";
 import { Button, Card, Chip } from "../shared";
 
 function TaskCard({ item, index }) {
@@ -20,9 +20,9 @@ function TaskCard({ item, index }) {
     switch (taskStatus) {
       case "Pending":
         return "yellow";
-      case "In Progress":
+      case "In progress":
         return "primary";
-      case "In Review":
+      case "In review":
         return "accent";
       case "Completed":
         return "success";
@@ -90,7 +90,7 @@ function TaskCard({ item, index }) {
       <CardActions sx={{ justifyContent: "flex-start", padding: 0 }}>
         <Button
           autoCapitalize="false"
-          // endIcon={<VectorCard />}
+          endIcon={<VectorCard />}
           onClick={navigateToTaskDetailsPage}
           size="small"
           variant="text"

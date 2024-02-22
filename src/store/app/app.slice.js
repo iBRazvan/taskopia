@@ -104,10 +104,10 @@ export const appSlice = createSlice({
 });
 
 export const {
-	tooggleSidebar,
+	toggleSidebar,
 	openSidebar,
 	closeSidebar,
-	tooggleModal,
+	toggleModal,
 	openModal,
 	closeModal,
 	logInSuccess,
@@ -124,13 +124,14 @@ export const {
 export const getLoggedUserAction = () => async (dispatch, getState) => {
 	dispatch(loginStart());
 	const state = getState();
-	const token = state.app.auth.loggedUser.accessToken.accessToken;
+	const userId = state.app.auth.loggedUser.accessToken.user._id;
+	const token = state.app.auth.loggedUser.accessToken.token;
 	try {
-		// const response = await axios.get(`${API_BASE_URL}/user/logged-user`, {
-		// 	headers: {
-		// 		Authorization: `Bearer ${token}`,
-		// 	},
-		// });
+		const response = await axios.get(`${BASE_URL}/users/${userId}`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
 		dispatch(getLoggUsersSuccess(response.data));
 	} catch (e) {
 		dispatch(loginError(e.message));
@@ -141,7 +142,7 @@ export const updateLoggedUser =
 	(payload, onSuccess, onError) => async (dispatch, getState) => {
 		dispatch(updateUserStart());
 		const state = getState();
-		const token = state.app.auth.loggedUser.accessToken.accessToken;
+		const token = state.app.auth.loggedUser.accessToken.token;
 		try {
 			// const response = await axios.patch(
 			// 	`${API_BASE_URL}/user/update`,
@@ -169,11 +170,12 @@ export const updateLoggedUser =
 export const logInAction = (payload) => async (dispatch) => {
 	dispatch(loginStart());
 	try {
-		// const response = await axios.post(`${API_BASE_URL}/auth/signin`, {
-		// 	email: payload.email,
-		// 	password: payload.password,
-		// });
+		const response = await axios.post(`${BASE_URL}/auth/login`, {
+			email: payload.email,
+			password: payload.password,
+		});
 		await dispatch(logInSuccess(response.data));
+		console.log(response.data)
 		dispatch(getLoggedUserAction());
 	} catch (e) {
 		dispatch(loginError(e.message));

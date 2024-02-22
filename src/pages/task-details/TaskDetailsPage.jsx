@@ -1,12 +1,17 @@
-// /* eslint-disable radix */
-// import React from "react";
-// import { useSelector } from "react-redux";
-// import { useParams } from "react-router-dom";
+/* eslint-disable radix */
+import React, { useState, useEffect } from "react";
 
-// export default function TaskDetailsPage() {
-// 	const params = useParams();
-// 	const task = useSelector((state) =>
-// 		state.entities.tasks.data.find((item) => item.id === parseInt(params.id))
-// 	);
-// 	return <div>TaskDetailsPage id={task.title}</div>;
-// }
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+
+export default function TaskDetailsPage() {
+  const [selectedTask, setSelectedTask] = useState([]);
+  const params = useParams();
+  const tasks = useSelector((state) => state.entities.tasks.data);
+  const task = tasks.find((item) => item._id === params.id);
+  useEffect(() => {
+    setSelectedTask(task)
+  }, []);
+
+  return <div>TaskDetailsPage id={selectedTask._id}</div>;
+}

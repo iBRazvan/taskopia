@@ -6,10 +6,6 @@ import * as Yup from "yup";
 import {
   AlertTitle,
   Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   Snackbar,
   Typography,
 } from "@mui/material";
@@ -33,8 +29,8 @@ const CreateTaskSchema = Yup.object().shape({
 function CreateTaskForm() {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(false);
-  const [alertBox, setAlertBox] = React.useState({
+  const [open, setOpen] = useState(false);
+  const [alertBox, setAlertBox] = useState({
     title: "Success",
     type: "success",
     message: "",
@@ -170,6 +166,7 @@ function CreateTaskForm() {
       >
         Create Task
       </Button>
+
       <Snackbar
         onClose={handleClose}
         open={open}
@@ -178,7 +175,7 @@ function CreateTaskForm() {
           horizontal: "right",
         }}
       >
-        {/* <Alert
+        <Alert
 					onClose={handleClose}
 					severity={alertBox.type}
 					sx={{
@@ -187,7 +184,7 @@ function CreateTaskForm() {
 				>
 					<AlertTitle>{alertBox.title}</AlertTitle>
 					{alertBox.message}
-				</Alert> */}
+				</Alert>
       </Snackbar>
     </Box>
   );

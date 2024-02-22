@@ -3,7 +3,7 @@ import PropTypes, { string } from "prop-types";
 
 import { Box, Grid, Link, Typography } from "@mui/material";
 
-import PlacehoderBg from "../../../assets/icons/screen-placeholder.svg";
+import PlaceholderBg from "../../../assets/icons/screen-placeholder.svg";
 import { Button } from "../../../components/shared";
 
 function Copyright(props) {
@@ -46,7 +46,7 @@ function WelcomePlaceholder(props) {
 						flex: 1,
 						height: "100%",
 						borderRadius: "32px",
-						backgroundImage: `url(${PlacehoderBg})`,
+						backgroundImage: `url(${PlaceholderBg})`,
 						backgroundRepeat: "no-repeat",
 						backgroundColor: (t) => t.palette.primary.main,
 						backgroundSize: "cover",
@@ -90,7 +90,6 @@ function WelcomePlaceholder(props) {
 						<Typography
 							component="h4"
 							variant="h4"
-							xs={false}
 							sx={{
 								paddingBottom: 8,
 								textAlign: position,
@@ -116,14 +115,5 @@ function WelcomePlaceholder(props) {
 		</Grid>
 	);
 }
-
-WelcomePlaceholder.propTypes = {
-	message: string,
-	position: string,
-	actionButton: PropTypes.objectOf({
-		buttonLabel: PropTypes.string,
-		onActionClick: PropTypes.func,
-	}),
-};
 
 export default WelcomePlaceholder;
