@@ -28,11 +28,7 @@ import {
 		icon: { base: <SettingsStroke />, selected: <SettingsFilled /> },
 		link: "/settings",
 	},
-	{
-		label: "Test Page",
-		icon: { base: <BugReportOutlinedIcon />, selected: <BugReportIcon /> },
-		link: "/test",
-	},
+
 ];
 
 export default sideBarLinks
