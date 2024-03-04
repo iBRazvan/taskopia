@@ -6,6 +6,7 @@ import withNavigationDrawer  from "../../components/navigation-drawer/withNaviga
 import { GlobalSearchBar } from "../../components/shared";
 
 import QuoteOfTheDay from "./components/QuoteOfTheDay";
+import OverviewAction from "./components/OverviewAction";
 
 function OverviewPage() {
 	return (
@@ -16,6 +17,7 @@ function OverviewPage() {
 		>
 			<GlobalSearchBar />
 			<QuoteOfTheDay />
+			<OverviewAction/>
 		</Box>
 	);
 }

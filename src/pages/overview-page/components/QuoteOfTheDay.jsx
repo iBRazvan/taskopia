@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-
 import { Button } from "../../../components/shared";
 
 export default function QuoteOfTheDay() {
@@ -58,7 +57,7 @@ export default function QuoteOfTheDay() {
         }}
       >
         <Box
-          sx={{ fontSize: "5rem", textAlign: "center", padding: "0 1rem 0 0" }}
+          sx={{ fontSize: "56px", textAlign: "center", padding: "0 1rem 0 0" }}
         >
           &#128075;
         </Box>
@@ -73,7 +72,7 @@ export default function QuoteOfTheDay() {
 
       <Box
         sx={{
-          background: `url(${backgroundQuote})`,
+          background: `url(https://s3-alpha-sig.figma.com/img/4b24/6ddc/03ea890e6656bc557c24eafaa9fd425e?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CvT~RJ2QhYfLDPIA3LzMtUFrWytaF~D4kT1So9WFHyV2-gexU2AFFuvYwwZrrsthQdlsdSt8LiKle0~7RD5fMQ-I1wjkFHHMTspFv-knULyjh5C04iDOyXDkG-PUGYq01jpm3tekh~Z3aXvrFftKJXv3FbQ2Bk3Sm86X4TRaN8d2BkHBc15WZjLXxTeUJAC8rBNQi0FXofWlbtRHXDH2Oi07zYQu44YHEnPC-vf6rBHcpm-PGOkXQYDxzRAB-OWvRskq33x46dZyET3MA0ewEkZrMpK7PWBY6du7sAw0q5IbkeJuawMQl2QE~uLbgW1RZiTE91wsLSbdhDWsESoaYg__)`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           margin: "2rem 0",
