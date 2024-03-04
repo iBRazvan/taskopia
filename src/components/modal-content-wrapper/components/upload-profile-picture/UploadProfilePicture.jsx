@@ -32,7 +32,7 @@ export default function UploadProfilePicture() {
 	};
 
 	return (
-		<Box sx={{ padding: "55px", paddingTop: 0 }}>
+		<Box sx={{height:"90vh", padding: "55px", borderRadius:"50%", paddingTop: 0, paddingX: "8rem" }}>
 			<Typography component="h1" sx={{ fontWeight: "bold" }} variant="h5">
 				Change your Profile Picture
 			</Typography>
@@ -41,7 +41,7 @@ export default function UploadProfilePicture() {
 					padding: "20px 0",
 				}}
 			>
-				<Typography component="p" sx={{ color: "#636363" }} variant="caption">
+				<Typography component="p" sx={{ color: "#636363", marginBottom: 6 }} variant="caption">
 					Tap Icon to Select Picture{" "}
 				</Typography>
 				<Stack
@@ -68,13 +68,15 @@ export default function UploadProfilePicture() {
 						}}
 					/>
 					<Button
-						color="primary"
 						onClick={openFileUploadWindow}
 						size="small"
 						variant="contained"
 						sx={{
 							position: "absolute",
 							bottom: "10%",
+							bgcolor: "rgba(0,0,0,0.5)",
+							width: "80%"
+						
 						}}
 					>
 						Tap Icon to Change Picture

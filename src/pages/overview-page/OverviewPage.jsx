@@ -13,6 +13,7 @@ function OverviewPage() {
 		<Box
 			sx={{
 				background: (t) => t.palette.background.surface,
+				margin: "0 0 6rem 0"
 			}}
 		>
 			<GlobalSearchBar />
