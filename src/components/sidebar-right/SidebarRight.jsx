@@ -8,13 +8,13 @@ import { Button, Card } from "../shared";
 // import WidgetArea from "./WidgetArea";
 
 function SidebarRight() {
-	// const loggedUser = useSelector((state) => state.app.auth.loggedUser.userInfo);
+	const loggedUser = useSelector((state) => state.app.auth.loggedUser.userInfo);
 
-	// const getInitials = () =>
-	// 	loggedUser?.fullName
-	// 		.split(" ")
-	// 		.map((item) => item[0])
-	// 		.join(".");
+	const getInitials = () =>
+		loggedUser?.fullName
+			.split(" ")
+			.map((item) => item[0])
+			.join(".");
 
 	return (
 		<Card
@@ -34,7 +34,7 @@ function SidebarRight() {
 				spacing={2}
 			>
 				<Avatar
-					// src={loggedUser?.profilePicture}
+					src={loggedUser?.profilePicture}
 					variant="rounded"
 					sx={{
 						bgcolor: "black",

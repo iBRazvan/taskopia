@@ -53,10 +53,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function GlobalSearchBar() {
 	return (
-		<Box sx={{ flexGrow: 1 }}>
+		<Box sx={{ flexGrow: 3 }}>
 			<Stack direction="row" justifyContent="space-between">
 				<Search>
-					<SearchIconWrapper>
+					<SearchIconWrapper >
 						<SearchIcon />
 					</SearchIconWrapper>
 					<StyledInputBase
@@ -68,6 +68,7 @@ export default function GlobalSearchBar() {
 					aria-label="show 17 new notifications"
 					color="inherit"
 					size="large"
+					sx={{ width: "30%"}}
 				>
 					<Badge badgeContent={1} color="error">
 						<NotificationsIcon color="primary" />

@@ -1,11 +1,25 @@
-import React from "react";
-import CloseIcon from "@mui/icons-material/Close";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import { Button } from "../../../components/shared";
-import { Onboarding, Workspace } from "../../../assets/icons";
+import { useDispatch } from "react-redux";
+import { openModal } from "../../../store/app/app.slice";
+import { modalTypes } from "../../../store/app/constants";
+
+import {
+  Onboarding,
+  Workspace,
+  BoltArrow,
+  BoltArrowSelected,
+} from "../../../assets/icons";
 
 const OverviewAction = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [hover1, setHover1] = useState();
+  const [hover2, setHover2] = useState();
+
   return (
     <Box>
       <Box
@@ -23,7 +37,10 @@ const OverviewAction = () => {
           </Typography>
         </Box>
 
+        {/* First item */}
         <Box
+          onMouseEnter={() => setHover1(true)}
+          onMouseLeave={() => setHover1(false)}
           sx={{
             padding: "0 0.7rem",
             display: "flex",
@@ -33,9 +50,25 @@ const OverviewAction = () => {
             alignItems: "center",
             bgcolor: "#FFFFFF",
             borderRadius: "16px",
+            color: "#666666",
+            gap: "20px",
+            ":hover": {
+              color: (t) => t.palette.primary.main,
+            },
+            cursor: "pointer",
           }}
+          onClick={() => dispatch(openModal(modalTypes.uploadPicture))}
         >
-          <Box sx={{ display: "flex", width: "70%", alignItems: "center", gap: "14px" }}>
+          {/* First col */}
+          <Box
+            sx={{
+              display: "flex",
+              width: "70%",
+              alignItems: "center",
+              padding: "0.6rem 0rem",
+              gap: "14px",
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
@@ -49,19 +82,35 @@ const OverviewAction = () => {
             >
               <Onboarding />
             </Box>
-            <Typography sx={{fontSize: "16px", fontWeight: "600"} }>
+            <Typography sx={{ fontSize: "16px", fontWeight: "400" }}>
               Hey name, update your porfile picture.
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", justifyContent:"center", width: "30%" }}>
-            <h4>Get started</h4>
-            <h4>Arrows</h4>
+          {/* Second col */}
+
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              width: "30%",
+              gap: "10px",
+              alignItems: "center",
+            }}
+          >
+            <Typography sx={{ fontSize: "16px", fontWeight: "400" }}>
+              Get started
+            </Typography>
+
+            {hover1 ? <BoltArrowSelected /> : <BoltArrow />}
           </Box>
         </Box>
 
+        {/* Second item */}
         <Box
+          onMouseEnter={() => setHover2(true)}
+          onMouseLeave={() => setHover2(false)}
           sx={{
-            padding: "0.7rem",
+            padding: "0 0.7rem",
             display: "flex",
             justifyContent: "space-between",
             height: "100%",
@@ -69,9 +118,25 @@ const OverviewAction = () => {
             alignItems: "center",
             bgcolor: "#FFFFFF",
             borderRadius: "16px",
+            color: "#666666",
+            gap: "20px",
+            ":hover": {
+              color: (t) => t.palette.primary.main,
+            },
+            cursor: "pointer",
           }}
+          onClick={() => navigate("/tasks-board")}
         >
-          <Box sx={{ display: "flex", width: "70%", alignItems: "center" }}>
+          {/* Left col */}
+          <Box
+            sx={{
+              display: "flex",
+              width: "70%",
+              alignItems: "center",
+              padding: "0.6rem 0rem",
+              gap: "14px",
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
@@ -80,18 +145,31 @@ const OverviewAction = () => {
                 borderRadius: "12px",
                 width: "48px",
                 height: "48px",
+
                 background: (t) => t.palette.background.surface,
               }}
             >
               <Workspace />
             </Box>
-            <Typography sx={{fontSize: "16px", fontWeight: "600"} }>
+            <Typography sx={{ fontSize: "16px", fontWeight: "400" }}>
               Create your first task in your Workspace.
             </Typography>
           </Box>
-          <Box sx={{ display: "flex",justifyContent:"center", width:"30%" }}>
-            <h4>Get started</h4>
-            <h4>Arrows</h4>
+
+          {/* Right col */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              width: "30%",
+              gap: "10px",
+              alignItems: "center",
+            }}
+          >
+            <Typography sx={{ fontSize: "16px", fontWeight: "400" }}>
+              Get started
+            </Typography>
+            {hover2 ? <BoltArrowSelected /> : <BoltArrow />}
           </Box>
         </Box>
       </Box>

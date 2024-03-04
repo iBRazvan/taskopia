@@ -54,20 +54,20 @@ export default function Modal() {
 	const handleClose = () => {
 		dispatch(closeModal());
 	};
-	/*
+
 	const handleMaxWidthChange = (event) => {
 		setMaxWidth(
 			// @ts-expect-error autofill of arbitrary value is not handled.
 			event.target.value
 		);
 	};
-	*/
 
-	/*
+
+	
 	const handleFullWidthChange = (event) => {
 		setFullWidth(event.target.checked);
 	};
-	*/
+
 	return (
 		<Dialog
 			fullWidth={fullWidth}
